@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { menu } from "../data/menuData"; // Ensure you're importing from the correct source
+import { menuData } from "../data/menuData"; // Ensure this is correct
 import { icons } from "../assets/icons/icons";
-import ARView from "./ARView";
+import ARView from "./ARView"; // Import the AR component
 
-const FoodCard = (props) => {
+const FoodCard = () => {
   const [arModel, setArModel] = useState(null);
 
   const handleARClick = (modelUrl) => {
@@ -17,7 +17,7 @@ const FoodCard = (props) => {
 
   return (
     <div className="px-2">
-      {menu.coffee.map((item, index) => (
+      {menuData.coffee.map((item, index) => (
         <div className="bg-white rounded-xl shadow-lg mb-6" key={index}>
           <div className="relative">
             <img className="w-full" src={item.image} alt="menu-item" />
