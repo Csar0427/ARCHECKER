@@ -1,23 +1,15 @@
-import React, { useEffect, useRef } from 'react';
-import 'aframe'; // Import A-Frame or the AR library you're using
+import React from 'react';
+import 'aframe';
+import 'aframe-ar';
 
 const ARView = ({ modelUrl }) => {
-  const sceneRef = useRef(null);
-
-  useEffect(() => {
-    // Initialize AR logic or update the scene with the new model
-    if (sceneRef.current) {
-      const modelEl = sceneRef.current.querySelector('[gltf-model]');
-      if (modelEl) {
-        modelEl.setAttribute('gltf-model', modelUrl);
-      }
-    }
-  }, [modelUrl]);
-
   return (
     <div>
-      <a-scene embedded>
-        <a-entity gltf-model={modelUrl}></a-entity>
+      <a-scene embedded arjs>
+        <a-marker preset="hiro">
+          <a-entity gltf-model={modelUrl} scale="0.1 0.1 0.1"></a-entity>
+        </a-marker>
+        <a-entity camera></a-entity>
       </a-scene>
     </div>
   );

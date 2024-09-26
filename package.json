@@ -10,6 +10,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "aframe": "^1.6.0",
+    "aframe-ar": "^0.2.1-a",
     "dotenv": "^16.4.5",
     "firebase": "^10.13.1",
     "react": "^18.3.1",
