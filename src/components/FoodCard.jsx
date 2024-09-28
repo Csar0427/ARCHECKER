@@ -45,7 +45,8 @@ const FoodCard = () => {
               </button>
             </div>
             <div className="mt-2">
-              <span className="font-bold">AR Model:</span> {item.arModel ? item.arModel.split('/').pop() : "N/A"}
+              <span className="font-bold">AR Model:</span>{" "}
+              {item.arModel ? item.arModel.split("/").pop() : "N/A"}
             </div>
           </div>
         </div>

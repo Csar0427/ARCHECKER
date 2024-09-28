@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 const ARView = ({ modelUrl }) => {
   useEffect(() => {
-    // Any setup needed can be done here
+    console.log('AR Model Loaded:', modelUrl); // Debugging purpose
   }, [modelUrl]);
 
   return (
@@ -10,8 +10,8 @@ const ARView = ({ modelUrl }) => {
       <a-marker preset="hiro">
         <a-entity
           gltf-model={modelUrl}
-          scale="0.5 0.5 0.5"
-          position="0 0 0"
+          scale="1 1 1" // Adjust scale
+          position="0 0.5 0" // Adjust position
           rotation="0 0 0"
         ></a-entity>
       </a-marker>
