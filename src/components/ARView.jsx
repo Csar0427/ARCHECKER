@@ -1,22 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const ARView = ({ modelUrl }) => {
-  useEffect(() => {
-    console.log('AR Model Loaded:', modelUrl); // Debugging to ensure the AR model loads
-  }, [modelUrl]);
-
   return (
-    <a-scene embedded arjs>
-      {/* Display the AR marker and model */}
-      <a-marker preset="hiro">
-        <a-entity
-          gltf-model={modelUrl} // Use gltf-model for both .gltf and .glb files
-          scale="1 1 1" // Adjust scale as needed
-          position="0 0.5 0" // Adjust position
-          rotation="0 0 0" // Adjust rotation
-        ></a-entity>
-      </a-marker>
-      {/* Camera entity to view the AR */}
+    <a-scene embedded arjs="sourceType: webcam; trackingMethod: best;">
+      <a-entity 
+        gltf-model={modelUrl} // Make sure this URL points to your .glb or .gltf file
+        scale="1 1 1" // Adjust scale as necessary
+        position="0 0 0" // Adjust position to your liking
+        rotation="0 0 0" // Adjust rotation as needed
+      ></a-entity>
       <a-entity camera></a-entity>
     </a-scene>
   );
