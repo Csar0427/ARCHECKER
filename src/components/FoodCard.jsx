@@ -9,13 +9,11 @@ const FoodCard = () => {
 
   // Handle AR model click to display AR View
   const handleARClick = (modelUrl) => {
-    console.log('AR button clicked, model URL:', modelUrl);
     setArModel(modelUrl);
   };
 
   // Close AR view
   const closeARView = () => {
-    console.log('Closing AR view');
     setArModel(null);
   };
 

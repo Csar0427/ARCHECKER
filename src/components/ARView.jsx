@@ -10,7 +10,7 @@ const ARView = ({ modelUrl }) => {
       {/* Display the AR marker and model */}
       <a-marker preset="hiro">
         <a-entity
-          gltf-model={modelUrl} // Correct: Use gltf-model for both .gltf and .glb files
+          gltf-model={modelUrl} // Use gltf-model for both .gltf and .glb files
           scale="1 1 1" // Adjust scale as needed
           position="0 0.5 0" // Adjust position
           rotation="0 0 0" // Adjust rotation
