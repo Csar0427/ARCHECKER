@@ -36,3 +36,6 @@
     transform: rotate(360deg);
   }
 }
+a-scene {
+  display: block; /* Ensures A-Frame takes up full space */
+}

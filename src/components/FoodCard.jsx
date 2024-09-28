@@ -7,12 +7,10 @@ import ARView from "./ARView"; // Import the AR component
 const FoodCard = () => {
   const [arModel, setArModel] = useState(null);
 
-  // Handle AR model click to display AR View
   const handleARClick = (modelUrl) => {
     setArModel(modelUrl);
   };
 
-  // Close AR view
   const closeARView = () => {
     setArModel(null);
   };
@@ -34,7 +32,6 @@ const FoodCard = () => {
           <div className="px-2 py-3">
             <p className="text-sm text-pretty">{item.description}</p>
             <div className="flex justify-between mt-3">
-              {/* AR Button */}
               <button
                 className="bg-[#ff8418] font-bold text-xl rounded-full px-1.5"
                 onClick={() => handleARClick(item.arModel)} // Pass AR model URL
@@ -58,10 +55,7 @@ const FoodCard = () => {
       {/* Conditionally render the AR view */}
       {arModel && (
         <div>
-          <ARView modelUrl={arModel} />
-          <button onClick={closeARView} className="bg-red-500 text-white p-2 rounded">
-            Close AR
-          </button>
+          <ARView modelUrl={arModel} onClose={closeARView} />
         </div>
       )}
     </div>
