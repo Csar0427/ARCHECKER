@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { menuData } from "../data/menuData"; // Ensure this is correct
-import { icons } from "../assets/icons/icons";
+import { menuData } from "../data/menuData"; // Make sure this path is correct
+import { icons } from "../assets/icons/icons"; // Ensure this path is correct
 import ARView from "./ARView"; // Import the AR component
 
 const FoodCard = () => {
   const [arModel, setArModel] = useState(null);
 
+  // Handle AR model click to display AR View
   const handleARClick = (modelUrl) => {
     setArModel(modelUrl);
   };
 
+  // Close AR view
   const closeARView = () => {
     setArModel(null);
   };
@@ -32,9 +34,10 @@ const FoodCard = () => {
           <div className="px-2 py-3">
             <p className="text-sm text-pretty">{item.description}</p>
             <div className="flex justify-between mt-3">
+              {/* AR Button */}
               <button
                 className="bg-[#ff8418] font-bold text-xl rounded-full px-1.5"
-                onClick={() => handleARClick(item.arModel)}
+                onClick={() => handleARClick(item.arModel)} // Pass AR model URL
               >
                 {icons.ar}
               </button>
@@ -52,6 +55,7 @@ const FoodCard = () => {
         </div>
       ))}
 
+      {/* Conditionally render the AR view */}
       {arModel && (
         <div>
           <ARView modelUrl={arModel} />
