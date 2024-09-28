@@ -23,4 +23,3 @@ const ARView = ({ modelUrl }) => {
 };
 
 export default ARView;
-

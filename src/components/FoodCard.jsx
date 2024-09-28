@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { menuData } from "../data/menuData"; // Make sure this path is correct
+import { menuData } from "../data/menuData"; // Ensure this path is correct
 import { icons } from "../assets/icons/icons"; // Ensure this path is correct
 import ARView from "./ARView"; // Import the AR component
 
@@ -9,11 +9,13 @@ const FoodCard = () => {
 
   // Handle AR model click to display AR View
   const handleARClick = (modelUrl) => {
+    console.log('AR button clicked, model URL:', modelUrl);
     setArModel(modelUrl);
   };
 
   // Close AR view
   const closeARView = () => {
+    console.log('Closing AR view');
     setArModel(null);
   };
 
