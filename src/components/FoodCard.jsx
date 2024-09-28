@@ -1,18 +1,17 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { menuData } from "../data/menuData"; // Ensure this path is correct
-import { icons } from "../assets/icons/icons"; // Ensure this path is correct
-import ARView from "./ARView"; // Import the AR component
+import { menuData } from "../data/menuData"; // Menu data with food items
+import { icons } from "../assets/icons/icons"; // Icons for AR and cart
+import ARView from "./ARView"; // Import the AR view
 
 const FoodCard = () => {
-  const [arModel, setArModel] = useState(null);
+  const [arModel, setArModel] = useState(null); // State to store AR model URL
 
   const handleARClick = (modelUrl) => {
-    setArModel(modelUrl);
+    setArModel(modelUrl); // Set the selected model URL for AR
   };
 
   const closeARView = () => {
-    setArModel(null);
+    setArModel(null); // Close AR view
   };
 
   return (
@@ -20,7 +19,7 @@ const FoodCard = () => {
       {menuData.coffee.map((item, index) => (
         <div className="bg-white rounded-xl shadow-lg mb-6" key={index}>
           <div className="relative">
-            <img className="w-full" src={item.image} alt="menu-item" />
+            <img className="w-full" src={item.image} alt={item.name} />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-70"></div>
             <h3 className="absolute bottom-0 left-0 p-2">
               <span className="text-[#ff8418] font-bold text-xl mr-2.5">
@@ -36,28 +35,18 @@ const FoodCard = () => {
                 className="bg-[#ff8418] font-bold text-xl rounded-full px-1.5"
                 onClick={() => handleARClick(item.arModel)} // Pass AR model URL
               >
-                {icons.ar}
+                {icons.ar} View in AR
               </button>
               <button className="bg-[#ff8418] font-bold text-xl rounded-full px-1.5">
-                <Link to={{ pathname: "/item-detail", state: item }}>
-                  {icons.plus}
-                </Link>
+                {icons.plus} Add to Cart
               </button>
-            </div>
-            <div className="mt-2">
-              <span className="font-bold">AR Model:</span>{" "}
-              {item.arModel ? item.arModel.split("/").pop() : "N/A"}
             </div>
           </div>
         </div>
       ))}
 
       {/* Conditionally render the AR view */}
-      {arModel && (
-        <div>
-          <ARView modelUrl={arModel} onClose={closeARView} />
-        </div>
-      )}
+      {arModel && <ARView modelUrl={arModel} onClose={closeARView} />}
     </div>
   );
 };
