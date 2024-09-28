@@ -2,15 +2,15 @@ import React, { useEffect } from "react";
 
 const ARView = ({ modelUrl, onClose }) => {
   useEffect(() => {
-    // Request back camera access
     const requestCameraPermission = async () => {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: { exact: "environment" } }, // Use the back camera
+        // Request access to the back camera
+        await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: { exact: "environment" } },
         });
-        console.log("Back camera access granted");
+        console.log("Camera access granted");
       } catch (err) {
-        console.error("Error accessing back camera:", err);
+        console.error("Error accessing camera:", err);
       }
     };
 
@@ -25,32 +25,35 @@ const ARView = ({ modelUrl, onClose }) => {
         left: 0,
         width: "100%",
         height: "100%",
-        zIndex: 9999, // Ensure the AR scene is on top of everything else
-        backgroundColor: "black", // Optional: add a background to prevent overlap issues
+        zIndex: 9999,
+        backgroundColor: "transparent", // Ensure transparency to see the camera feed
       }}
     >
-      {/* A-Frame AR scene */}
+      {/* A-Frame scene with AR.js configuration */}
       <a-scene
         embedded
-        arjs="sourceType: webcam; trackingMethod: best;" // AR.js settings for back camera
-        style={{ width: "100%", height: "100%", position: "absolute", top: 0, left: 0, zIndex: 9999 }}
+        arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"
+        style={{ width: "100%", height: "100%" }}
       >
+        {/* AR food model displayed in the scene */}
         <a-entity
-          gltf-model={modelUrl} // 3D food model URL
-          scale="0.5 0.5 0.5"
-          position="0 0 -2"
+          gltf-model={modelUrl} // Use the 3D model URL passed via props
+          scale="0.5 0.5 0.5" // Adjust scale based on the model size
+          position="0 0 -2" // Position in front of the camera
         ></a-entity>
+
+        {/* AR.js camera entity */}
         <a-entity camera></a-entity>
       </a-scene>
 
-      {/* Close AR button */}
+      {/* Close button to exit AR view */}
       <button
         onClick={onClose}
         style={{
           position: "absolute",
           top: "10px",
           right: "10px",
-          zIndex: 10000, // Make sure the button is on top of the AR view
+          zIndex: 10000,
           backgroundColor: "red",
           color: "white",
           border: "none",
