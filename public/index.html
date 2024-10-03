@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>React AR App</title>
     <style>
-      body { margin: 0; }
-      canvas { display: block; }
+      body {
+        margin: 0;
+      }
+      canvas {
+        display: block;
+      }
     </style>
+    <!-- A-Frame and AR.js scripts -->
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.js"></script>
   </head>
   <body>
     <div id="root"></div>
-
-    <!-- Include Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://threejs.org/examples/jsm/loaders/GLTFLoader.js"></script>
-    <script src="https://threejs.org/examples/jsm/controls/OrbitControls.js"></script>
   </body>
 </html>

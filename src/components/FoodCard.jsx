@@ -47,7 +47,7 @@ const FoodCard = (props) => {
             <div className="flex justify-between mt-3">
               <button
                 className="bg-[#ff8418] font-bold text-xl rounded-full px-1.5"
-                onClick={() => handleARClick(item.arModel)} // Make this button clickable
+                onClick={() => handleARClick("/models/coffee.glb")} // Set the model URL
               >
                 {icons.ar}
               </button>
