@@ -6,11 +6,18 @@ const ARModal = ({ model, onClose }) => {
   const modalRef = useRef();
   const videoRef = useRef(null);
   const rendererRef = useRef(null);
+  const sceneRef = useRef(null); // Reference to the scene
+  const cameraRef = useRef(null); // Reference to the camera
   const isCameraInitialized = useRef(false); // Track camera initialization
 
   useEffect(() => {
+    // Create scene and camera
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 1; // Move the camera closer
+    cameraRef.current = camera;
+    sceneRef.current = scene;
+
     const loader = new GLTFLoader();
 
     // Create video element
@@ -43,13 +50,12 @@ const ARModal = ({ model, onClose }) => {
     rendererRef.current.setSize(400, 300); // Size for the mini window
     modalRef.current.appendChild(rendererRef.current.domElement);
 
-    // Set camera position
-    camera.position.z = 2;
-
     // Load the 3D model
     loader.load(model, (gltf) => {
       scene.add(gltf.scene);
       gltf.scene.position.set(0, 0, -1);
+    }, undefined, (error) => {
+      console.error("An error happened while loading the model: ", error);
     });
 
     // Render loop
@@ -59,7 +65,7 @@ const ARModal = ({ model, onClose }) => {
         const texture = new THREE.VideoTexture(videoRef.current);
         scene.background = texture; // Use video as background texture
       }
-      rendererRef.current.render(scene, camera);
+      rendererRef.current.render(scene, cameraRef.current);
     };
 
     render(); // Start the rendering loop
