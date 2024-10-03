@@ -1,13 +1,10 @@
-import { Routes, Route } from "react-router-dom";
-import FoodCard from "./components/FoodCard";
-import ARView from "./components/ARView";
+import "./App.css";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<FoodCard category="main-course" />} />
-      <Route path="/ar-view" element={<ARView />} />
-    </Routes>
+    <div className="App">
+      <h1>App Component</h1>
+    </div>
   );
 }
 
