@@ -10,6 +10,7 @@ export const menu = {
       description:
         "Juicy grilled chicken breast served with mashed potatoes and steamed vegetables",
       image: grilled,
+      arModel: "/models/coffee.glb" // Add AR model for Espresso
     },
     {
       name: "Spaghetti Bologne",
@@ -164,7 +165,7 @@ export const menu = {
       price: "100.00",
       description: "Smooth and creamy latte with steamed milk.",
       image: "https://via.placeholder.com/300x200",
-      arModel: "https://example.com/path-to-latte-ar-model.gltf", 
+      arModel: "https://example.com/path-to-latte-ar-model.gltf"
     },
     {
       name: "Americano",
