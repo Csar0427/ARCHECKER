@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { menuData } from "../data/menuData"; // Menu data with food items
-import { icons } from "../assets/icons/icons"; // Icons for AR and cart
-import ARView from "./ARView"; // Import the AR view
+import { menu } from "../data/menuData"; // Correct import from the updated menuData.js
+import { icons } from "../assets/icons/icons"; // Assuming you have an icons file
+import ARView from "./ARView"; // Import ARView component
 
 const FoodCard = () => {
   const [arModel, setArModel] = useState(null); // State to store AR model URL
@@ -16,7 +16,7 @@ const FoodCard = () => {
 
   return (
     <div className="px-2">
-      {menuData.coffee.map((item, index) => (
+      {menu.coffee.map((item, index) => (
         <div className="bg-white rounded-xl shadow-lg mb-6" key={index}>
           <div className="relative">
             <img className="w-full" src={item.image} alt={item.name} />

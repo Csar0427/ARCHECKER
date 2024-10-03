@@ -1,21 +1,54 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
+import * as THREE from "three"; // Importing Three.js
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"; // Importing GLTFLoader
 
 const ARView = ({ modelUrl, onClose }) => {
-  useEffect(() => {
-    const requestCameraPermission = async () => {
-      try {
-        // Request access to the back camera
-        await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: { exact: "environment" } },
-        });
-        console.log("Camera access granted");
-      } catch (err) {
-        console.error("Error accessing camera:", err);
-      }
-    };
+  const sceneRef = useRef(null); // Reference for the Three.js scene
 
-    requestCameraPermission();
-  }, []);
+  useEffect(() => {
+    if (!sceneRef.current) return;
+
+    // Create a basic scene
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ alpha: true });
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    sceneRef.current.appendChild(renderer.domElement);
+
+    // Create a light
+    const light = new THREE.AmbientLight(0xffffff); // Soft white light
+    scene.add(light);
+
+    // Load the GLTF model
+    const loader = new GLTFLoader();
+    loader.load(
+      modelUrl,
+      (gltf) => {
+        scene.add(gltf.scene);
+        renderer.render(scene, camera);
+      },
+      undefined,
+      (error) => {
+        console.error("An error occurred while loading the model:", error);
+      }
+    );
+
+    // Set camera position
+    camera.position.z = 5;
+
+    // Animation loop
+    const animate = () => {
+      requestAnimationFrame(animate);
+      renderer.render(scene, camera);
+    };
+    animate();
+
+    // Cleanup on unmount
+    return () => {
+      sceneRef.current.removeChild(renderer.domElement);
+    };
+  }, [modelUrl]);
 
   return (
     <div
@@ -26,26 +59,9 @@ const ARView = ({ modelUrl, onClose }) => {
         width: "100%",
         height: "100%",
         zIndex: 9999,
-        backgroundColor: "transparent", // Ensure transparency to see the camera feed
       }}
+      ref={sceneRef} // Attach the ref here
     >
-      {/* A-Frame scene with AR.js configuration */}
-      <a-scene
-        embedded
-        arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"
-        style={{ width: "100%", height: "100%" }}
-      >
-        {/* AR food model displayed in the scene */}
-        <a-entity
-          gltf-model={modelUrl} // Use the 3D model URL passed via props
-          scale="0.5 0.5 0.5" // Adjust scale based on the model size
-          position="0 0 -2" // Position in front of the camera
-        ></a-entity>
-
-        {/* AR.js camera entity */}
-        <a-entity camera></a-entity>
-      </a-scene>
-
       {/* Close button to exit AR view */}
       <button
         onClick={onClose}
