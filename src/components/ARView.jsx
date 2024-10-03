@@ -1,84 +1,61 @@
-import React, { useEffect, useRef } from "react";
-import * as THREE from "three"; // Importing Three.js
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"; // Importing GLTFLoader
+import React, { useEffect } from "react";
+import * as THREE from "three";
+import { ARButton } from "three/examples/jsm/webxr/ARButton.js";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 const ARView = ({ modelUrl, onClose }) => {
-  const sceneRef = useRef(null); // Reference for the Three.js scene
-
   useEffect(() => {
-    if (!sceneRef.current) return;
+    let scene, camera, renderer, controller;
 
-    // Create a basic scene
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ alpha: true });
+    const initAR = async () => {
+      // Set up the scene
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.xr.enabled = true;
+      document.body.appendChild(renderer.domElement);
 
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    sceneRef.current.appendChild(renderer.domElement);
+      // Add AR button to start AR session
+      document.body.appendChild(ARButton.createButton(renderer));
 
-    // Create a light
-    const light = new THREE.AmbientLight(0xffffff); // Soft white light
-    scene.add(light);
+      // Set up the controller
+      controller = renderer.xr.getController(0);
+      scene.add(controller);
 
-    // Load the GLTF model
-    const loader = new GLTFLoader();
-    loader.load(
-      modelUrl,
-      (gltf) => {
-        scene.add(gltf.scene);
+      // Load the model
+      const loader = new GLTFLoader();
+      loader.load(modelUrl, (gltf) => {
+        const model = gltf.scene;
+        model.scale.set(0.5, 0.5, 0.5); // Adjust model scale if necessary
+        scene.add(model);
+      }, undefined, (error) => {
+        console.error('An error happened while loading the model:', error);
+      });
+
+      // Start the rendering loop
+      renderer.setAnimationLoop(() => {
         renderer.render(scene, camera);
-      },
-      undefined,
-      (error) => {
-        console.error("An error occurred while loading the model:", error);
-      }
-    );
-
-    // Set camera position
-    camera.position.z = 5;
-
-    // Animation loop
-    const animate = () => {
-      requestAnimationFrame(animate);
-      renderer.render(scene, camera);
+      });
     };
-    animate();
 
-    // Cleanup on unmount
+    initAR();
+
+    // Cleanup function
     return () => {
-      sceneRef.current.removeChild(renderer.domElement);
+      if (renderer) {
+        renderer.dispose();
+        document.body.removeChild(renderer.domElement);
+      }
     };
   }, [modelUrl]);
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        zIndex: 9999,
-      }}
-      ref={sceneRef} // Attach the ref here
-    >
-      {/* Close button to exit AR view */}
-      <button
-        onClick={onClose}
-        style={{
-          position: "absolute",
-          top: "10px",
-          right: "10px",
-          zIndex: 10000,
-          backgroundColor: "red",
-          color: "white",
-          border: "none",
-          padding: "10px",
-        }}
-      >
+    <>
+      <button onClick={onClose} style={{ position: "absolute", top: "10px", right: "10px", zIndex: 10000 }}>
         Close AR
       </button>
-    </div>
+    </>
   );
 };
 
