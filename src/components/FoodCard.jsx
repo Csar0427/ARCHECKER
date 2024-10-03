@@ -1,21 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react"; // Import useState
 import { Link } from "react-router-dom";
 import { menu } from "../data/menuData";
 import { icons } from "../assets/icons/icons";
-import ARModal from "./ARModal"; // Import the ARModal component
+import ARModal from "./ARModal"; // Import ARModal
 
 const FoodCard = (props) => {
-  const [isARModalOpen, setARModalOpen] = useState(false);
-  const [currentModel, setCurrentModel] = useState(null);
+  const [showAR, setShowAR] = useState(false); // State to control AR modal visibility
+  const [selectedModel, setSelectedModel] = useState(""); // State to store the selected model
 
-  const openARModal = (model) => {
-    setCurrentModel(model);
-    setARModalOpen(true);
-  };
-
-  const closeARModal = () => {
-    setARModalOpen(false);
-    setCurrentModel(null);
+  const handleARClick = (model) => {
+    setSelectedModel(model);
+    setShowAR(true); // Show AR modal when the AR icon is clicked
   };
 
   return (
@@ -50,12 +45,9 @@ const FoodCard = (props) => {
           <div className="px-2 py-3">
             <p className="text-sm text-pretty">{item.description}</p>
             <div className="flex justify-between mt-3">
-              <button
-                className="bg-[#ff8418] font-bold text-xl rounded-full px-1.5"
-                onClick={() => openARModal(item.model)} // Pass the model to ARModal
-              >
+              <div onClick={() => handleARClick(item.model)}>
                 {icons.ar}
-              </button>
+              </div>
 
               <button className="bg-[#ff8418] font-bold text-xl rounded-full px-1.5">
                 <Link
@@ -77,9 +69,9 @@ const FoodCard = (props) => {
           </div>
         </div>
       ))}
-
-      {/* Render AR modal if open */}
-      {isARModalOpen && <ARModal model={currentModel} onClose={closeARModal} />}
+      {showAR && (
+        <ARModal model={selectedModel} onClose={() => setShowAR(false)} />
+      )}
     </div>
   );
 };

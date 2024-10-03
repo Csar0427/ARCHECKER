@@ -1,75 +1,85 @@
-import React, { useEffect, useRef } from "react";
-import * as THREE from "three";
+import React, { useRef, useEffect } from "react";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import * as THREE from "three";
 
 const ARModal = ({ model, onClose }) => {
-  const arContainerRef = useRef(null);
+  const modalRef = useRef();
   const videoRef = useRef(null);
-  const streamRef = useRef(null); // To store the camera stream
+  const rendererRef = useRef(null);
+  const isCameraInitialized = useRef(false); // Track camera initialization
 
   useEffect(() => {
-    const startCamera = async () => {
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const loader = new GLTFLoader();
+
+    // Create video element
+    videoRef.current = document.createElement("video");
+    videoRef.current.autoplay = true;
+    videoRef.current.loop = true;
+    videoRef.current.muted = true;
+
+    const initCameraStream = async () => {
+      if (isCameraInitialized.current) return; // Prevent re-initializing
+      isCameraInitialized.current = true;
+
       try {
-        streamRef.current = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: "environment" },
-        });
-        videoRef.current.srcObject = streamRef.current;
-
-        // Play the video when metadata is loaded
-        videoRef.current.onloadedmetadata = () => {
-          videoRef.current.play().catch((error) => {
-            console.error("Error playing video: ", error);
-          });
-        };
+        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+        videoRef.current.srcObject = stream;
+        await videoRef.current.play(); // Await for the video to play
       } catch (error) {
-        console.error("Error accessing camera: ", error);
+        console.error("Error accessing the camera: ", error);
+        onClose(); // Close modal if camera access fails
       }
     };
 
-    const loadARModel = () => {
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      const renderer = new THREE.WebGLRenderer({ alpha: true });
+    initCameraStream(); // Call to initialize camera stream
 
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      arContainerRef.current.appendChild(renderer.domElement);
+    // Create renderer
+    rendererRef.current = new THREE.WebGLRenderer({ alpha: true });
+    rendererRef.current.setSize(400, 300); // Size for the mini window
+    modalRef.current.appendChild(rendererRef.current.domElement);
 
-      const loader = new GLTFLoader();
-      loader.load(model, (gltf) => {
-        const object = gltf.scene;
-        object.position.set(0, 0, -5); // Adjust position relative to camera
-        scene.add(object);
-      });
+    // Set camera position
+    camera.position.z = 2;
 
-      camera.position.z = 5;
+    // Load the 3D model
+    loader.load(model, (gltf) => {
+      scene.add(gltf.scene);
+      gltf.scene.position.set(0, 0, -1);
+    });
 
-      const animate = () => {
-        requestAnimationFrame(animate);
-        renderer.render(scene, camera);
-      };
-      animate();
+    // Render loop
+    const render = () => {
+      requestAnimationFrame(render);
+      if (videoRef.current && videoRef.current.readyState === videoRef.current.HAVE_ENOUGH_DATA) {
+        const texture = new THREE.VideoTexture(videoRef.current);
+        scene.background = texture; // Use video as background texture
+      }
+      rendererRef.current.render(scene, camera);
     };
 
-    startCamera();
-    loadARModel();
+    render(); // Start the rendering loop
 
-    // Cleanup function to stop the camera
     return () => {
-      if (streamRef.current) {
-        const tracks = streamRef.current.getTracks();
-        tracks.forEach((track) => track.stop());
+      // Cleanup on unmount
+      if (rendererRef.current) {
+        rendererRef.current.dispose();
       }
+      if (videoRef.current && videoRef.current.srcObject) {
+        const tracks = videoRef.current.srcObject.getTracks();
+        tracks.forEach((track) => track.stop());
+        videoRef.current.srcObject = null; // Reset srcObject
+      }
+      onClose(); // Close the modal
     };
-  }, [model]);
+  }, [model, onClose]);
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center">
-      <div className="relative w-full h-full flex flex-col justify-center items-center">
-        <video ref={videoRef} className="absolute w-full h-full object-cover" autoPlay playsInline />
-        <div ref={arContainerRef} className="absolute w-full h-full" />
-        <button className="absolute top-4 right-4 bg-white p-2 rounded-full" onClick={onClose}>
-          Close
-        </button>
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50">
+      <div className="bg-white p-4 rounded-lg">
+        <button onClick={onClose} className="text-red-500 font-bold mb-2">Close</button>
+        <div ref={modalRef} className="border rounded-lg overflow-hidden" />
       </div>
     </div>
   );
