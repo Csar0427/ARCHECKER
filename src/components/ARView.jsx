@@ -5,7 +5,7 @@ const ARView = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
-  const modelUrl = searchParams.get("modelUrl"); // Get the 3D model URL from the query params
+  const modelUrl = searchParams.get("modelUrl");
 
   useEffect(() => {
     const requestCameraPermission = async () => {
@@ -30,7 +30,7 @@ const ARView = () => {
         style={{ width: "100%", height: "100%" }}
       >
         <a-entity
-          gltf-model={modelUrl} // Use the 3D model URL passed via query params
+          gltf-model={modelUrl}
           scale="0.5 0.5 0.5"
           position="0 0 -2"
         ></a-entity>
@@ -38,7 +38,7 @@ const ARView = () => {
       </a-scene>
 
       <button
-        onClick={() => navigate(-1)} // Go back to the previous page (menu)
+        onClick={() => navigate(-1)}
         style={{
           position: "absolute",
           top: "10px",

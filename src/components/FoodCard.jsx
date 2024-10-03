@@ -1,15 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { menu } from "../data/menuData"; // Correct import from menuData.js
-import { icons } from "../assets/icons/icons"; // Import your icons
+import { menu } from "../data/menuData"; // Ensure menu data is imported
 
-const FoodCard = (props) => {
+const FoodCard = ({ category }) => {
   return (
     <div className="px-2">
-      {menu[props.category].map((item, index) => (
+      {menu[category].map((item, index) => (
         <div className="bg-white rounded-xl shadow-lg shadow-black/30 mb-6" key={index}>
           <div className="relative">
-            <img className="w-full" src={item.image} alt="menu-image" />
+            <img className="w-full" src={item.image} alt="menu-item" />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-70"></div>
             <h3 className="absolute bottom-0 left-0 p-2">
               <span className="text-[#ff8418] font-bold text-xl mr-2.5">
@@ -22,14 +21,14 @@ const FoodCard = (props) => {
           <div className="px-2 py-3">
             <p className="text-sm text-pretty">{item.description}</p>
             <div className="flex justify-between mt-3">
-              <Link 
-                to={`/ar-view?modelUrl=${item.arModel}`} // Ensure you pass the AR model URL
+              <Link
+                to={`/ar-view?modelUrl=${encodeURIComponent(item.arModel)}`} // Ensure proper AR model URL is passed
                 className="bg-[#ff8418] font-bold text-xl rounded-full px-1.5"
               >
-                {icons.ar}
+                View AR
               </Link>
               <button className="bg-[#ff8418] font-bold text-xl rounded-full px-1.5">
-                {icons.plus}
+                Add to Basket
               </button>
             </div>
           </div>
