@@ -19,9 +19,9 @@ const ARView = ({ modelUrl, onClose }) => {
       // Add AR button to start AR session
       document.body.appendChild(ARButton.createButton(renderer));
 
-      // Set up the controller
-      controller = renderer.xr.getController(0);
-      scene.add(controller);
+      // Add ambient light
+      const light = new THREE.AmbientLight(0xffffff, 1);
+      scene.add(light);
 
       // Load the model
       const loader = new GLTFLoader();
@@ -30,7 +30,7 @@ const ARView = ({ modelUrl, onClose }) => {
         model.scale.set(0.5, 0.5, 0.5); // Adjust model scale if necessary
         scene.add(model);
       }, undefined, (error) => {
-        console.error('An error happened while loading the model:', error);
+        console.error('An error occurred while loading the model:', error);
       });
 
       // Start the rendering loop

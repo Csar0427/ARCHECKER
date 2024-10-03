@@ -1,15 +1,12 @@
 import React from "react";
-import ARView from "./ARView";
+import FoodCard from "./FoodCard";
 
-const TestARView = () => {
-  const modelUrl = "/model/cake.glb"; // Change this to a valid model path
-
+const ParentComponent = () => {
   return (
     <div>
-      <ARView modelUrl={modelUrl} onClose={() => {}} />
+      <FoodCard />
     </div>
   );
 };
 
-export default TestARView;
-
+export default ParentComponent;
