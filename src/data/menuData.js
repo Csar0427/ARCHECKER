@@ -157,7 +157,7 @@ export const menu = {
       price: "70.00",
       description: "Strong and bold espresso shot.",
       image: dessert,
-      arModel: "/models/coffee.glb", // Add AR model for Espresso
+      arModel: "/models/coffee.glb" // Add AR model for Espresso
     },
     {
       name: "Latte",

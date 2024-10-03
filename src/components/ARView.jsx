@@ -1,61 +1,65 @@
 import React, { useEffect } from "react";
-import * as THREE from "three";
-import { ARButton } from "three/examples/jsm/webxr/ARButton.js";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 const ARView = ({ modelUrl, onClose }) => {
   useEffect(() => {
-    let scene, camera, renderer, controller;
-
-    const initAR = async () => {
-      // Set up the scene
-      scene = new THREE.Scene();
-      camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.xr.enabled = true;
-      document.body.appendChild(renderer.domElement);
-
-      // Add AR button to start AR session
-      document.body.appendChild(ARButton.createButton(renderer));
-
-      // Add ambient light
-      const light = new THREE.AmbientLight(0xffffff, 1);
-      scene.add(light);
-
-      // Load the model
-      const loader = new GLTFLoader();
-      loader.load(modelUrl, (gltf) => {
-        const model = gltf.scene;
-        model.scale.set(0.5, 0.5, 0.5); // Adjust model scale if necessary
-        scene.add(model);
-      }, undefined, (error) => {
-        console.error('An error occurred while loading the model:', error);
-      });
-
-      // Start the rendering loop
-      renderer.setAnimationLoop(() => {
-        renderer.render(scene, camera);
-      });
-    };
-
-    initAR();
-
-    // Cleanup function
-    return () => {
-      if (renderer) {
-        renderer.dispose();
-        document.body.removeChild(renderer.domElement);
+    const requestCameraPermission = async () => {
+      try {
+        // Request access to the back camera
+        await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: { exact: "environment" } },
+        });
+        console.log("Camera access granted");
+      } catch (err) {
+        console.error("Error accessing camera:", err);
       }
     };
-  }, [modelUrl]);
+
+    requestCameraPermission();
+  }, []);
 
   return (
-    <>
-      <button onClick={onClose} style={{ position: "absolute", top: "10px", right: "10px", zIndex: 10000 }}>
+    <div
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        zIndex: 9999,
+        backgroundColor: "transparent",
+      }}
+    >
+      <a-scene
+        embedded
+        arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"
+        style={{ width: "100%", height: "100%" }}
+      >
+        <a-entity
+          gltf-model={modelUrl} // Use the 3D model URL passed via props
+          scale="0.5 0.5 0.5" // Adjust scale based on the model size
+          position="0 0 -2" // Position in front of the camera
+        ></a-entity>
+
+        {/* AR.js camera entity */}
+        <a-entity camera></a-entity>
+      </a-scene>
+
+      <button
+        onClick={onClose}
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "10px",
+          zIndex: 10000,
+          backgroundColor: "red",
+          color: "white",
+          border: "none",
+          padding: "10px",
+        }}
+      >
         Close AR
       </button>
-    </>
+    </div>
   );
 };
 
