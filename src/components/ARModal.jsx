@@ -26,7 +26,10 @@ const ARModal = ({ model, onClose }) => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
         videoRef.current.srcObject = stream;
-        await videoRef.current.play(); // Await for the video to play
+
+        videoRef.current.addEventListener('loadedmetadata', () => {
+          videoRef.current.play(); // Start playing the video once metadata is loaded
+        });
       } catch (error) {
         console.error("Error accessing the camera: ", error);
         onClose(); // Close modal if camera access fails
