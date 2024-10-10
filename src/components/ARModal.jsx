@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"; 
 import * as THREE from "three";
 
 const ARModal = ({ model, onClose }) => {
@@ -14,6 +14,9 @@ const ARModal = ({ model, onClose }) => {
     // Create scene and camera
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const light = new THREE.PointLight(0xffffff, 1, 100);
+    light.position.set(10, 10, 10);
+    scene.add(light);
     camera.position.z = 1; // Move the camera closer
     cameraRef.current = camera;
     sceneRef.current = scene;
@@ -50,8 +53,8 @@ const ARModal = ({ model, onClose }) => {
     rendererRef.current.setSize(400, 300); // Size for the mini window
     modalRef.current.appendChild(rendererRef.current.domElement);
 
-    // Load the 3D model
-    loader.load(model, (gltf) => {
+    //Load the 3D model
+     loader.load(model, (gltf) => {
       scene.add(gltf.scene);
       gltf.scene.position.set(0, 0, -1);
     }, undefined, (error) => {
