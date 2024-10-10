@@ -6,9 +6,9 @@ const ARModal = ({ model, onClose }) => {
   const modalRef = useRef();
   const videoRef = useRef(null);
   const rendererRef = useRef(null);
-  const sceneRef = useRef(null); // Reference to the scene
-  const cameraRef = useRef(null); // Reference to the camera
-  const isCameraInitialized = useRef(false); // Track camera initialization
+  const sceneRef = useRef(null); 
+  const cameraRef = useRef(null); 
+  const isCameraInitialized = useRef(false); 
 
   useEffect(() => {
     // Create scene and camera
@@ -17,7 +17,7 @@ const ARModal = ({ model, onClose }) => {
     const light = new THREE.PointLight(0xffffff, 1, 100);
     light.position.set(10, 10, 10);
     scene.add(light);
-    camera.position.z = 1; // Move the camera closer
+    camera.position.z = 5; // Move the camera further back
     cameraRef.current = camera;
     sceneRef.current = scene;
 
@@ -46,32 +46,35 @@ const ARModal = ({ model, onClose }) => {
       }
     };
 
-    initCameraStream(); // Call to initialize camera stream
+    initCameraStream(); 
 
     // Create renderer
     rendererRef.current = new THREE.WebGLRenderer({ alpha: true });
-    rendererRef.current.setSize(400, 300); // Size for the mini window
+    rendererRef.current.setSize(window.innerWidth, window.innerHeight); // Adjust renderer size
     modalRef.current.appendChild(rendererRef.current.domElement);
 
-    //Load the 3D model
-     loader.load(model, (gltf) => {
+    // Load the 3D model
+    loader.load(model, (gltf) => {
       scene.add(gltf.scene);
       gltf.scene.position.set(0, 0, -1);
     }, undefined, (error) => {
-      console.error("An error happened while loading the model: ", error);
+      console.error("Model loading error: ", error);
+    });
+
+    // Handle video texture
+    let texture;
+    videoRef.current.addEventListener('loadeddata', () => {
+      texture = new THREE.VideoTexture(videoRef.current);
+      scene.background = texture;
     });
 
     // Render loop
     const render = () => {
       requestAnimationFrame(render);
-      if (videoRef.current && videoRef.current.readyState === videoRef.current.HAVE_ENOUGH_DATA) {
-        const texture = new THREE.VideoTexture(videoRef.current);
-        scene.background = texture; // Use video as background texture
-      }
       rendererRef.current.render(scene, cameraRef.current);
     };
 
-    render(); // Start the rendering loop
+    render(); 
 
     return () => {
       // Cleanup on unmount
@@ -81,9 +84,8 @@ const ARModal = ({ model, onClose }) => {
       if (videoRef.current && videoRef.current.srcObject) {
         const tracks = videoRef.current.srcObject.getTracks();
         tracks.forEach((track) => track.stop());
-        videoRef.current.srcObject = null; // Reset srcObject
       }
-      onClose(); // Close the modal
+      onClose();
     };
   }, [model, onClose]);
 
