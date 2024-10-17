@@ -76,21 +76,21 @@ const ARModal = ({ model, onClose }) => {
 
     render(); 
 
-    return () => {
-      // Cleanup on unmount
-      if (rendererRef.current) {
-        rendererRef.current.dispose();
-      }
-      if (videoRef.current && videoRef.current.srcObject) {
-        const tracks = videoRef.current.srcObject.getTracks();
-        tracks.forEach((track) => track.stop());
-      }
-      onClose();
-    };
+    // return () => {
+    //   // Cleanup on unmount
+    //   if (rendererRef.current) {
+    //     rendererRef.current.dispose();
+    //   }
+    //   if (videoRef.current && videoRef.current.srcObject) {
+    //     const tracks = videoRef.current.srcObject.getTracks();
+    //     tracks.forEach((track) => track.stop());
+    //   }
+    //   onClose();
+    // };
   }, [model, onClose]);
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50">
+    <div className="static w-screen h-screen inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50">
       <div className="bg-white p-4 rounded-lg">
         <button onClick={onClose} className="text-red-500 font-bold mb-2">Close</button>
         <div ref={modalRef} className="border rounded-lg overflow-hidden" />

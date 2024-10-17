@@ -1,17 +1,23 @@
-import { useState } from "react"; // Import useState
+import { useState, useEffect } from "react"; // Import useState
 import { Link } from "react-router-dom";
 import { menu } from "../data/menuData";
 import { icons } from "../assets/icons/icons";
 import ARModal from "./ARModal"; // Import ARModal
+import AugRealModal from "./AugRealModal"; // Import AugRealModal
 
 const FoodCard = (props) => {
   const [showAR, setShowAR] = useState(false); // State to control AR modal visibility
   const [selectedModel, setSelectedModel] = useState(""); // State to store the selected model
 
   const handleARClick = (model) => {
+    console.log(model);
     setSelectedModel(model);
     setShowAR(true); // Show AR modal when the AR icon is clicked
   };
+
+  useEffect(() => {
+    console.log("showAR state:", showAR);
+  }, [showAR]);
 
   return (
     <div className="px-2">
@@ -45,9 +51,7 @@ const FoodCard = (props) => {
           <div className="px-2 py-3">
             <p className="text-sm text-pretty">{item.description}</p>
             <div className="flex justify-between mt-3">
-              <div onClick={() => handleARClick(item.model)}>
-                {icons.ar}
-              </div>
+              <div onClick={() => handleARClick(item.model)}>{icons.ar}</div>
 
               <button className="bg-[#ff8418] font-bold text-xl rounded-full px-1.5">
                 <Link
@@ -69,9 +73,14 @@ const FoodCard = (props) => {
           </div>
         </div>
       ))}
-      {showAR && (
-        <ARModal model={selectedModel} onClose={() => setShowAR(false)} />
-      )}
+      <AugRealModal
+        modelPath={selectedModel}
+        isOpen={showAR}
+        onClose={() => {
+          setShowAR(false);
+          window.location.reload();
+        }}
+      />
     </div>
   );
 };
