@@ -27,6 +27,7 @@ const AugRealModal = ({ modelPath, isOpen, onClose }) => {
     setRenderer(newRenderer);
 
     camera.position.set(0, 1, 3);
+    camera.lookAt(0, 0, 0); // Make the camera look at the origin
 
     const loader = new GLTFLoader();
     loader.load(
@@ -34,6 +35,7 @@ const AugRealModal = ({ modelPath, isOpen, onClose }) => {
       (gltf) => {
         const model = gltf.scene;
         model.scale.set(0.005, 0.005, 0.005);
+        model.position.set(0, -0.25, 0); // Set model position to the origin
         scene.add(model);
         modelRef.current = model;
       },
