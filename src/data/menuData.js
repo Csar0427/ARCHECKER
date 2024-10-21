@@ -107,6 +107,8 @@ export const menu = {
       description:
         "Juicy beef patty with lettuce, tomato, and our special sauce.",
       image: spag,
+      model: "/models/burger.glb",
+
     },
     {
       name: "Caramelized Onion Burger",
@@ -114,6 +116,7 @@ export const menu = {
       description:
         "Beef patty with melted cheese, pickles, onions, and ketchup.",
       image: spag,
+      model: "/models/burger.glb",
     },
     {
       name: "Three meat Burger",
@@ -121,6 +124,7 @@ export const menu = {
       description:
         "Beef patty topped with crispy bacon, cheddar cheese, and BBQ sauce.",
       image: spag,
+      model: "/models/burger.glb",
     },
     {
       name: "Knights of the Table (Mini Burgers)",
@@ -128,6 +132,7 @@ export const menu = {
       description:
         "Grilled veggie patty with avocado, lettuce, tomato, and vegan mayo.",
       image: spag,
+      model: "/models/burger.glb",
     },
     {
       name: "Clubhouse",
@@ -164,48 +169,56 @@ export const menu = {
       price: "100.00",
       description: "Smooth and creamy latte with steamed milk.",
       image: "https://via.placeholder.com/300x200",
+      model: "/models/coffee.glb",
     },
     {
       name: "Americano",
       price: "80.00",
       description: "Smooth and creamy latte with steamed milk.",
       image: "https://via.placeholder.com/300x200",
+      model: "/models/coffee.glb",
     },
     {
       name: "Doppio",
       price: "90.00",
       description: "Smooth and creamy latte with steamed milk.",
       image: "https://via.placeholder.com/300x200",
+      model: "/models/coffee.glb",
     },
     {
       name: "Cappucino",
       price: "100.00",
       description: "Smooth and creamy latte with steamed milk.",
       image: "https://via.placeholder.com/300x200",
+      model: "/models/coffee.glb",
     },
     {
       name: "Caffe Affogato",
       price: "110.00",
       description: "Smooth and creamy latte with steamed milk.",
       image: "https://via.placeholder.com/300x200",
+      model: "/models/coffee.glb",
     },
     {
       name: "Cafe Mocha White Mocha",
       price: "110.00",
       description: "Smooth and creamy latte with steamed milk.",
       image: "https://via.placeholder.com/300x200",
+      model: "/models/coffee.glb",
     },
     {
       name: "Flat White",
       price: "110.00",
       description: "Smooth and creamy latte with steamed milk.",
       image: "https://via.placeholder.com/300x200",
+      model: "/models/coffee.glb",
     },
     {
       name: "Caramel Macchiato",
       price: "110.00",
       description: "Smooth and creamy latte with steamed milk.",
       image: "https://via.placeholder.com/300x200",
+      model: "/models/coffee.glb",
     },
   ],
 };
