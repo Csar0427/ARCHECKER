@@ -64,6 +64,8 @@ export const menu = {
       description:
         "Creamy cheesecake on a graham cracker crust, topped with fresh strawberries.",
       image: dessert,
+      model: "/models/ice cream.glb",
+      
     },
   ],
   cakes: [
