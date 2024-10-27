@@ -113,7 +113,7 @@ export const menu = {
       description:
         "Juicy beef patty with lettuce, tomato, and our special sauce.",
       image: spag,
-      model: "/models/burger new.glb",
+      model: "/models/burger new (2).glb",
 
     },
     {
@@ -122,7 +122,7 @@ export const menu = {
       description:
         "Beef patty with melted cheese, pickles, onions, and ketchup.",
       image: spag,
-      model: "/models/burger new.glb",
+      model: "/models/burger new (2).glb",
     },
     {
       name: "Three meat Burger",
@@ -130,7 +130,7 @@ export const menu = {
       description:
         "Beef patty topped with crispy bacon, cheddar cheese, and BBQ sauce.",
       image: spag,
-      model: "/models/burger new .glb",
+      model: "/models/burger new (2).glb",
     },
     {
       name: "Knights of the Table (Mini Burgers)",
@@ -138,7 +138,7 @@ export const menu = {
       description:
         "Grilled veggie patty with avocado, lettuce, tomato, and vegan mayo.",
       image: spag,
-      model: "/models/burger.glb",
+      model: "/models/burger new (2).glb",
     },
     {
       name: "Clubhouse",
