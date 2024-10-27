@@ -50,7 +50,7 @@ export const menu = {
       description:
         "Creamy cheesecake on a graham cracker crust, topped with fresh strawberries.",
       image: dessert,
-      model: "/models/banana.glb",
+      model: "/models/split.glb",
     },
     {
       name: "Cookie ala Mode",
@@ -114,7 +114,7 @@ export const menu = {
       description:
         "Juicy beef patty with lettuce, tomato, and our special sauce.",
       image: spag,
-      model: "/models/Burgers.glb",
+      model: "/models/burgerss.glb",
 
     },
     {
@@ -123,7 +123,7 @@ export const menu = {
       description:
         "Beef patty with melted cheese, pickles, onions, and ketchup.",
       image: spag,
-      model: "/models/Burgers.glb",
+      model: "/models/burgerss.glb",
     },
     {
       name: "Three meat Burger",
@@ -131,7 +131,7 @@ export const menu = {
       description:
         "Beef patty topped with crispy bacon, cheddar cheese, and BBQ sauce.",
       image: spag,
-      model: "/models/Burgers.glb",
+      model: "/models/burgerss.glb",
     },
     {
       name: "Knights of the Table (Mini Burgers)",
@@ -139,7 +139,7 @@ export const menu = {
       description:
         "Grilled veggie patty with avocado, lettuce, tomato, and vegan mayo.",
       image: spag,
-      model: "/models/Burgers.glb",
+      model: "/models/burgerss.glb",
     },
     {
       name: "Clubhouse",
