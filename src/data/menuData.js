@@ -64,7 +64,7 @@ export const menu = {
       description:
         "Creamy cheesecake on a graham cracker crust, topped with fresh strawberries.",
       image: dessert,
-      model: "/models/ice cream.glb",
+      model: "/models/new ice.glb",
       
     },
   ],
@@ -76,6 +76,7 @@ export const menu = {
       description:
         "Delicious mango-flavored cake topped with fresh mango slices.",
       image: dessert,
+      model: "/models/cake.glb",
     },
     {
       name: "Blueberry",
@@ -84,6 +85,7 @@ export const menu = {
       description:
         "Rich and moist chocolate cake with a creamy chocolate frosting.",
       image: dessert,
+      model: "/models/cake.glb",
     },
     {
       name: "Strawberry",
@@ -92,6 +94,7 @@ export const menu = {
       description:
         "Rich and moist chocolate cake with a creamy chocolate frosting.",
       image: dessert,
+      model: "/models/cake.glb",
     },
     {
       name: "Ube",
@@ -100,6 +103,7 @@ export const menu = {
       description:
         "Rich and moist chocolate cake with a creamy chocolate frosting.",
       image: dessert,
+      model: "/models/cake.glb",
     },
   ],
   burgers: [
