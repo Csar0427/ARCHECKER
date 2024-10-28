@@ -33,7 +33,7 @@ const AugRealModal = ({ modelPath, isOpen, onClose }) => {
       modelPath,
       (gltf) => {
         const model = gltf.scene;
-        model.scale.set(0.02, 0.02, 0.02); // Increased scale for larger model
+        model.scale.set(0.05, 0.05, 0.05); // Increased scale for larger model
         model.position.set(0, -0.25, 0); 
         scene.add(model);
         modelRef.current = model;
