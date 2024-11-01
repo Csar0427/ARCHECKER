@@ -170,14 +170,14 @@ export const menu = {
       price: "70.00",
       description: "Strong and bold espresso shot.",
       image: dessert,
-      model: "/models/coffecup.glb",
+      model: "/models/TMG CUP 1.glb",
     },
     {
       name: "Latte",
       price: "100.00",
       description: "Smooth and creamy latte with steamed milk.",
       image: "https://via.placeholder.com/300x200",
-      model: "/models/kape.glb",
+      model: "/models/TMG CUP 2.glb",
     },
     {
       name: "Americano",
