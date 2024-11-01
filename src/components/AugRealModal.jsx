@@ -45,7 +45,7 @@ const AugRealModal = ({ modelPath, isOpen, onClose }) => {
       }
     );
 
-    const light = new THREE.PointLight(0xffffff, 1, 100);
+    const light = new THREE.PointLight(0xffffff, 2, 100);
     light.position.set(10, 10, 10);
     scene.add(light);
 
