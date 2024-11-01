@@ -170,7 +170,7 @@ export const menu = {
       price: "70.00",
       description: "Strong and bold espresso shot.",
       image: dessert,
-      model: "/models/TMG ICE COFFEE.glb",
+      model: "/models/NEW ICE COFFEE.glb",
     },
     {
       name: "Latte",
