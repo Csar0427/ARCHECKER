@@ -191,7 +191,7 @@ export const menu = {
       price: "90.00",
       description: "Smooth and creamy latte with steamed milk.",
       image: "https://via.placeholder.com/300x200",
-      model: "/models/TMG COFFEE.glb",
+      model: "/models/FISH AND CHIPS.glb",
     },
     {
       name: "Cappucino",
