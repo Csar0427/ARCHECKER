@@ -184,7 +184,7 @@ export const menu = {
       price: "80.00",
       description: "Smooth and creamy latte with steamed milk.",
       image: "https://via.placeholder.com/300x200",
-      model: "/models/PASTA.glb",
+      model: "/models/PASTANEW.glb",
     },
     {
       name: "Doppio",
