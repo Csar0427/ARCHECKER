@@ -198,7 +198,7 @@ export const menu = {
       price: "100.00",
       description: "Smooth and creamy latte with steamed milk.",
       image: "https://via.placeholder.com/300x200",
-      model: "/models/TMG COFFEE.glb",
+      model: "/models/PASSION.glb",
     },
     {
       name: "Caffe Affogato",
