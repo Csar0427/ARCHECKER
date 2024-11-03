@@ -1,26 +1,21 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Homepage from "./pages/Homepage";
-import MainCourse from "./pages/menu/MainCourse";
-import Drinks from "./pages/menu/Drinks";
-import Desserts from "./pages/menu/Desserts";
-import Burgers from "./pages/menu/Burgers";
-import Coffee from "./pages/menu/Coffee";
-import Cakes from "./pages/menu/Cakes";
+import CakesDesserts from "./pages/menu/Cakes&Desserts";
+import CoffeeGlaciers from "./pages/menu/Coffee&Glaciers";
+import MilkteaFruittea from "./pages/menu/Milktea&Fruittea";
+import PastaSanwiches from "./pages/menu/Pasta&Sandwiches";
 import BasketPage from "./pages/BasketPage";
 import ItemDetailPage from "./pages/ItemDetailPage";
 import OrderDetailPage from "./pages/OrderDetailPage";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Homepage /> },
-  { path: "/main-course", element: <MainCourse /> },
-  { path: "/drinks", element: <Drinks /> },
-  { path: "/desserts", element: <Desserts /> },
-  { path: "/cakes", element: <Desserts /> },
-  { path: "/burgers", element: <Burgers /> },
+  { path: "/cakes&desserts", element: <CakesDesserts /> },
+  { path: "/coffee&glaciers", element: <CoffeeGlaciers /> },
+  { path: "/milktea&fruittea", element: <MilkteaFruittea /> },
+  { path: "/pasta&sandwiches", element: <PastaSanwiches /> },
   { path: "/basket", element: <BasketPage /> },
-  { path: "/cakess", element: <Cakes /> },
-  { path: "/coffee", element: <Coffee /> },
   { path: "/item-detail", element: <ItemDetailPage /> },
   { path: "/order-detail", element: <OrderDetailPage /> },
 ]);

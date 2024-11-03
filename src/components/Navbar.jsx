@@ -41,22 +41,16 @@ const Navbar = () => {
 
           <ul className="flex flex-col justify-center items-center gap-5 text-xl my-5 font-bold uppercase">
             <li className="border-b-2 border-[#ff8418] pb-1">
-              <Link to="/main-course">Main Course</Link>
+              <Link to="/cakes&desserts">Cakes & Desserts</Link>
             </li>
             <li className="border-b-2 border-[#ff8418] pb-1">
-              <Link to="/desserts">Desserts</Link>
+              <Link to="/coffee&glaciers">Coffee & Glaciers</Link>
             </li>
             <li className="border-b-2 border-[#ff8418] pb-1">
-              <Link to="/burgers">Burgers</Link>
+              <Link to="/milktea&fruittea">Milktea & Fruittea</Link>
             </li>
             <li className="border-b-2 border-[#ff8418] pb-1">
-              <Link to="/drinks">Drinks</Link>
-            </li>
-            <li className="border-b-2 border-[#ff8418] pb-1">
-              <Link to="/coffee">Coffee</Link>
-            </li>
-            <li className="border-b-2 border-[#ff8418] pb-1">
-              <Link to="/cakess">Cakes</Link>
+              <Link to="/pasta&sandwiches">Pasta & Sandwiches</Link>
             </li>
           </ul>
         </div>

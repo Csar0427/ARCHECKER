@@ -1,7 +1,14 @@
 import Navbar from "../components/Navbar";
-import HeaderImage from "../assets/images/bg-image.jpg";
+import HeaderImage from "../assets/images/TMCBG.jpg";
+import { useNavigate } from "react-router-dom";
 
 const Homepage = () => {
+  const navigate = useNavigate();
+
+  const handleOrderNow = () => {
+    navigate("/main-course");
+  };
+
   return (
     <div className="w-full">
       <Navbar />
@@ -18,7 +25,10 @@ const Homepage = () => {
           <p className="text-lg mt-5">
             Begin your morning with a taste that lives up to its aroma.
           </p>
-          <button className="bg-[#ff8418] text-black px-10 py-2 rounded-full text-lg font-bold my-10">
+          <button
+            className="bg-[#ff8418] text-black px-10 py-2 rounded-full text-lg font-bold my-10"
+            onClick={handleOrderNow}
+          >
             Order Now
           </button>
         </div>

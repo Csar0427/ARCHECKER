@@ -10,14 +10,18 @@ const ItemDetailPage = (props) => {
   const [note, setNote] = useState("");
 
   const [selectedSize, setSelectedSize] = useState("slice");
-  const [selectedDrinkSize, setselectedDrinkSize] = useState("small");
+  const [selectedDrinkSize, setselectedDrinkSize] = useState("Regular");
 
   const { image, price, name, sizes, category } = location.state || {};
 
-  const basePrice = sizes
-    ? parseFloat(price[selectedSize.toLowerCase()]) ||
-      parseFloat(price[selectedDrinkSize.toLowerCase()])
-    : parseFloat(price);
+  let itemPrice = price;
+
+  const basePrice =
+    sizes && category === "milktea & fruittea"
+      ? parseFloat(price[selectedDrinkSize])
+      : sizes && category === "cakes"
+      ? parseFloat(price[selectedSize])
+      : parseFloat(price);
 
   const handleGoBack = () => {
     navigate(-1);
@@ -35,7 +39,10 @@ const ItemDetailPage = (props) => {
 
   const handleSizeChange = (e) => {
     setSelectedSize(e.target.value.toLowerCase());
-    setselectedDrinkSize(e.target.value.toLowerCase());
+  };
+
+  const handleSizeDrinkChange = (e) => {
+    setselectedDrinkSize(e.target.value);
   };
 
   const handleNoteChange = (e) => {
@@ -50,9 +57,14 @@ const ItemDetailPage = (props) => {
     quantity,
     note: note,
     price: totalPrice,
-    ...(category === "drinks" || category === "cakes"
-      ? { size: selectedSize || selectedDrinkSize }
+    ...(category === "milktea & fruittea"
+      ? { size: selectedDrinkSize }
+      : category === "cakes"
+      ? { size: selectedSize }
       : {}),
+    category,
+    sizes,
+    itemPrice,
   };
 
   return (
@@ -69,23 +81,40 @@ const ItemDetailPage = (props) => {
         <h1 className="text-[#ff8418]">&#8369;{totalPrice}</h1>
       </div>
 
-      {/* Conditionally render sizes if the category is "drinks" or "cakes" */}
-      {sizes && (category === "drinks" || category === "cakes") && (
+      {sizes && category === "milktea & fruittea" && (
         <div className="flex flex-col my-5 px-3">
           <h1 className="font-bold text-lg">
-            {category === "drinks" ? "Select Drink Size" : "Cake Variation"}
-            <span className="font-normal text-sm text-gray-600"> Pick 1</span>
+            Select Drink Size
+            <span className="font-normal text-sm text-gray-600 ml-3">
+              Pick 1
+            </span>
+          </h1>
+          {sizes.map((size) => (
+            <label key={size} className="flex items-center gap-2 py-3 border-b">
+              <input
+                type="radio"
+                value={size}
+                checked={selectedDrinkSize === size}
+                onChange={handleSizeDrinkChange}
+              />
+              <span className="text-lg font-medium">{size}</span>
+            </label>
+          ))}
+        </div>
+      )}
+
+      {sizes && category === "cakes" && (
+        <div className="flex flex-col my-5 px-3">
+          <h1 className="font-bold text-lg">
+            Cake Variation
+            <span className="font-normal text-sm text-gray-600">Pick 1</span>
           </h1>
           {sizes.map((size) => (
             <label key={size} className="flex items-center gap-2 py-3 border-b">
               <input
                 type="radio"
                 value={size.toLowerCase()}
-                checked={
-                  size === "Slice"
-                    ? selectedSize === size.toLowerCase()
-                    : selectedDrinkSize === size.toLowerCase()
-                }
+                checked={selectedSize === size.toLowerCase()}
                 onChange={handleSizeChange}
               />
               <span className="text-lg font-medium">{size}</span>

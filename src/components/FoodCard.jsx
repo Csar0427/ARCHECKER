@@ -2,8 +2,7 @@ import { useState, useEffect } from "react"; // Import useState
 import { Link } from "react-router-dom";
 import { menu } from "../data/menuData";
 import { icons } from "../assets/icons/icons";
-import ARModal from "./ARModal"; // Import ARModal
-import AugRealModal from "./AugRealModal"; // Import AugRealModal
+import AugRealModal from "./AugRealModal.jsx"; // Import AugRealModal
 
 const FoodCard = (props) => {
   const [showAR, setShowAR] = useState(false); // State to control AR modal visibility
@@ -27,17 +26,19 @@ const FoodCard = (props) => {
           key={index}
         >
           <div className="relative">
-            <img className="w-full" src={item.image} alt="menu-image" />
+            <img
+              className="w-full"
+              src={item.image}
+              alt="menu-image"
+              loading="lazy"
+            />
 
             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-70"></div>
 
             <h3 className="absolute bottom-0 left-0 p-2">
               <span className="text-[#ff8418] font-bold text-xl mr-2.5">
                 {item.sizes ? (
-                  <>
-                    &#8369;{item.price.slice}
-                    {item.price.small}
-                  </>
+                  <>&#8369;{item.price.Regular}</>
                 ) : (
                   <>&#8369;{item.price}</>
                 )}
