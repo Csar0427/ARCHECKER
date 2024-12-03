@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const DeleteConfirmation = ({ isOpen, onClose, onConfirm }) => {
+const CancelConfirmation = ({ isOpen, onClose, onConfirm }) => {
   if (!isOpen) return null;
 
   return (
@@ -19,23 +19,25 @@ const DeleteConfirmation = ({ isOpen, onClose, onConfirm }) => {
           ease: [0.42, 0, 0.58, 1],
         }}
       >
-        <h2 className="text-lg font-semibold mb-4">
-          Are you sure you want to removed this item?
-        </h2>
+        <h2 className="text-xl font-semibold mb-4">Cancel Order</h2>
+        <p className="text-gray-600 mb-4">
+          Are you sure you want to cancel your order? This action cannot be
+          undone.
+        </p>
 
         <div className="flex justify-between">
           <button
-            className="bg-gray-500 text-white px-4 py-2 rounded"
+            className="bg-gray-500 text-white font-semibold px-4 py-2 rounded"
             onClick={onClose}
           >
-            Cancel
+            Keep It
           </button>
 
           <button
-            className="bg-[#ff8428] text-white px-4 py-2 rounded"
+            className="bg-[#ff8428] text-white font-semibold px-4 py-2 rounded"
             onClick={onConfirm}
           >
-            Yes, Delete
+            Cancel Order
           </button>
         </div>
       </motion.div>
@@ -43,4 +45,4 @@ const DeleteConfirmation = ({ isOpen, onClose, onConfirm }) => {
   );
 };
 
-export default DeleteConfirmation;
+export default CancelConfirmation;

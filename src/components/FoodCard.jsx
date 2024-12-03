@@ -1,88 +1,74 @@
-import { useState, useEffect } from "react"; // Import useState
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { menu } from "../data/menuData";
 import { icons } from "../assets/icons/icons";
-import AugRealModal from "./AugRealModal.jsx"; // Import AugRealModal
+import { motion } from "framer-motion";
 
 const FoodCard = (props) => {
-  const [showAR, setShowAR] = useState(false); // State to control AR modal visibility
-  const [selectedModel, setSelectedModel] = useState(""); // State to store the selected model
+  const navigate = useNavigate();
 
-  const handleARClick = (model) => {
-    console.log(model);
-    setSelectedModel(model);
-    setShowAR(true); // Show AR modal when the AR icon is clicked
+  const handleARClick = (item) => {
+    navigate("/arView", {
+      state: {
+        modelPath: item.model,
+        name: item.name,
+        description: item.description,
+      },
+    });
   };
 
-  useEffect(() => {
-    console.log("showAR state:", showAR);
-  }, [showAR]);
-
   return (
-    <div className="px-2">
+    <motion.div
+      variants={{
+        hidden: { opacity: 0 },
+        show: {
+          opacity: 1,
+          transition: {
+            staggerChildren: 0.5,
+          },
+        },
+      }}
+      initial="hidden"
+      animate="show"
+      className="px-2 max-w-[630px] grid gap-6"
+    >
       {menu[props.category].map((item, index) => (
-        <div
-          className="bg-white rounded-xl shadow-lg shadow-black/30 mb-6"
+        <motion.div
+          variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
+          className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out transform hover:scale-105 overflow-hidden"
           key={index}
         >
           <div className="relative">
             <img
-              className="w-full"
+              className="w-full h-56 object-cover"
               src={item.image}
-              alt="menu-image"
+              alt={item.name}
               loading="lazy"
             />
-
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-70"></div>
-
-            <h3 className="absolute bottom-0 left-0 p-2">
-              <span className="text-[#ff8418] font-bold text-xl mr-2.5">
-                {item.sizes ? (
-                  <>&#8369;{item.price.Regular}</>
-                ) : (
-                  <>&#8369;{item.price}</>
-                )}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-60"></div>
+            <h3 className="absolute bottom-0 left-0 p-4 flex flex-col justify-end">
+              <span className="text-[#ff8418] font-bold text-xl mb-2">
+                &#8369;{item.price}
               </span>
-              <span className="text-xl font-bold font-header text-white">
-                {item.name}
-              </span>
+              <span className="text-2xl font-bold text-white">{item.name}</span>
             </h3>
           </div>
-
-          <div className="px-2 py-3">
-            <p className="text-sm text-pretty">{item.description}</p>
-            <div className="flex justify-between mt-3">
-              <div onClick={() => handleARClick(item.model)}>{icons.ar}</div>
-
-              <button className="bg-[#ff8418] font-bold text-xl rounded-full px-1.5">
-                <Link
-                  to={{
-                    pathname: "/item-detail",
-                  }}
-                  state={{
-                    image: item.image,
-                    price: item.price,
-                    name: item.name,
-                    sizes: item.sizes,
-                    category: props.category,
-                  }}
-                >
-                  {icons.plus}
-                </Link>
+          <div className="p-4">
+            <p className="text-sm text-gray-600">{item.description}</p>
+            <div className="flex justify-between items-center mt-4">
+              <div
+                className="cursor-pointer hover:text-[#ff8418] transition-colors duration-300"
+                onClick={() => handleARClick(item)}
+              >
+                {icons.ar}
+              </div>
+              <button className="bg-[#ff8418] text-white font-bold text-xl rounded-full px-5 py-2 flex items-center hover:bg-[#ff6f2f] transition-colors duration-300">
+                {icons.plus}
               </button>
             </div>
           </div>
-        </div>
+        </motion.div>
       ))}
-      <AugRealModal
-        modelPath={selectedModel}
-        isOpen={showAR}
-        onClose={() => {
-          setShowAR(false);
-          window.location.reload();
-        }}
-      />
-    </div>
+    </motion.div>
   );
 };
 

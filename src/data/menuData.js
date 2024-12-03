@@ -39,82 +39,83 @@ export const menu = {
   "cakes & desserts": [
     {
       name: "Black Forest",
-      price: "99.00",
+      price: "949.00",
       description:
-        "Juicy grilled chicken breast served with mashed potatoes and steamed vegetables",
+        "A rich, decadent chocolate cake layered with luscious whipped cream, tart cherries, and finished with a drizzle of cherry liqueur and dark chocolate shavings.",
       image: blackForest,
       model: "/models/Black Forest.glb",
     },
     {
       name: "Chocolate Cake",
-      price: "89.00",
+      price: "799.00",
       description:
-        "Classic spaghetti pasta with rich Bolognese sauce and Parmesan cheese.",
+        "A classic, indulgent chocolate cake with a rich, velvety texture that melts in your mouth.",
       image: chocolateCake,
       model: "/models/Chocolate Cake.glb",
     },
     {
       name: "Fried Ice Cream",
-      price: "89.00",
+      price: "149.00",
       description:
-        "Classic spaghetti pasta with rich Bolognese sauce and Parmesan cheese.",
+        "A crispy, golden shell encasing creamy ice cream, creating a delightful contrast of warm and cold in every bite.",
       image: friedIceCream,
       model: "/models/Fried Ice Cream.glb",
     },
     {
       name: "Lamington",
-      price: "89.00",
+      price: "90.00",
       description:
-        "Classic spaghetti pasta with rich Bolognese sauce and Parmesan cheese.",
+        "Soft sponge cake squares coated in chocolate and rolled in coconut flakes, a true treat from Down Under.",
       image: lamington,
       model: "/models/Lamington.glb",
     },
     {
       name: "Mango Cake",
-      price: "89.00",
+      price: "889.00",
       description:
-        "Classic spaghetti pasta with rich Bolognese sauce and Parmesan cheese.",
+        "A light, fruity cake layered with fresh mango flavor, perfect for a tropical taste.",
       image: mangoCake,
-      model: "/models/mango cake.glb",
+      model: "/models/NEW MANGO CAKE.glb",
     },
     {
       name: "Mango Cheese Cake",
-      price: "89.00",
+      price: "659.00",
       description:
-        "Classic spaghetti pasta with rich Bolognese sauce and Parmesan cheese.",
+        "Creamy cheesecake with a burst of mango, blending sweetness and tang in every slice.",
       image: mangoCheeseCake,
       model: "/models/cheesecake.glb",
     },
     {
       name: "Milktea Cake",
-      price: "55.00",
+      price: "1299.00",
       description:
-        "Decadent chocolate cake topped with rich chocolate ganache.",
+        "A fluffy cake infused with the signature flavor of milk tea, ideal for tea lovers.",
       image: milkteaCake,
       model: "/models/MILKTEA CAKE.glb",
     },
     {
       name: "Wicked Oreos",
-      price: "89.00",
+      price: "149.00",
       description:
-        "Classic spaghetti pasta with rich Bolognese sauce and Parmesan cheese.",
+        "Crispy battered Oreos served warm, with a gooey chocolatey center that’s irresistibly wicked.",
       image: wickedOreos,
-      model: "/models/Wicked Oreos.glb",
+      model: "/models/NEW WICKED.glb",
     },
   ],
   "coffee & glaciers": [
     {
-      name: "Cappucino",
+      name: "Cappuccino",
       price: "100.00",
-      description: "Refreshing iced tea served with a slice of lemon.",
+      description:
+        "A classic espresso with steamed milk and a layer of rich, velvety foam.",
       image: cappuccino,
       model: "models/Capuccino.glb",
     },
     {
-      name: "Caramel Mach",
+      name: "Caramel Macchiato",
       price: "110.00",
       description:
-        "Tropical fruit punch with a blend of pineapple, orange, and guava juices.",
+        "Smooth espresso layered with steamed milk and drizzled with caramel for a sweet finish.",
       image: caramelMach,
       model: "models/Caramel Mach.glb",
     },
@@ -122,7 +123,7 @@ export const menu = {
       name: "Cookies and Cream Glaciers",
       price: "110.00",
       description:
-        "Tropical fruit punch with a blend of pineapple, orange, and guava juices.",
+        "A creamy, ice-blended treat with a delightful cookies-and-cream flavor in every sip.",
       image: cookiesNCreamGlaciers,
       model: "models/FRAPPE.glb",
     },
@@ -130,7 +131,7 @@ export const menu = {
       name: "Latte",
       price: "100.00",
       description:
-        "Tropical fruit punch with a blend of pineapple, orange, and guava juices.",
+        "Espresso mixed with steamed milk, offering a silky-smooth coffee experience.",
       image: latte,
       model: "models/Capuccino.glb",
     },
@@ -138,7 +139,7 @@ export const menu = {
       name: "Strawberry Glaciers",
       price: "110.00",
       description:
-        "Tropical fruit punch with a blend of pineapple, orange, and guava juices.",
+        "An ice-blended drink bursting with fresh strawberry flavor, perfect for a refreshing, fruity boost.",
       image: strawberryGlaciers,
       model: "models/Strawberry Glacier.glb",
     },
@@ -147,7 +148,7 @@ export const menu = {
       name: "TMC Coffee",
       price: "100.00",
       description:
-        "Tropical fruit punch with a blend of pineapple, orange, and guava juices.",
+        "Our signature coffee blend, expertly crafted for a rich, bold, and unforgettable flavor.",
       image: tmcCoffee,
       model: "models/Capuccino.glb",
     },
@@ -158,7 +159,7 @@ export const menu = {
       sizes: ["Regular", "Large", "1 Liter"],
       price: { Regular: "85.00", Large: "100", "1 Liter": "110" },
       description:
-        "Decadent chocolate cake topped with rich chocolate ganache.",
+        "A unique milk tea blend with a smooth, earthy flavor and a hint of smokiness.",
       image: charcoal,
       model: "models/charcoal.glb",
     },
@@ -167,7 +168,7 @@ export const menu = {
       sizes: ["Regular", "Large", "1 Liter"],
       price: { Regular: "85.00", Large: "100", "1 Liter": "110" },
       description:
-        "Decadent chocolate cake topped with rich chocolate ganache.",
+        "A refreshing tea infused with the crisp, tangy flavor of green apple.",
       image: greenAppleFruitTea,
       model: "models/GREEN TEA.glb",
     },
@@ -176,7 +177,7 @@ export const menu = {
       sizes: ["Regular", "Large", "1 Liter"],
       price: { Regular: "85.00", Large: "100", "1 Liter": "110" },
       description:
-        "Decadent chocolate cake topped with rich chocolate ganache.",
+        "Tropical mango flavors in a vibrant and refreshing fruit tea.",
       image: mangoFruitTea,
       model: "models/MANGO.glb",
     },
@@ -185,7 +186,7 @@ export const menu = {
       sizes: ["Regular", "Large", "1 Liter"],
       price: { Regular: "85.00", Large: "100", "1 Liter": "110" },
       description:
-        "Decadent chocolate cake topped with rich chocolate ganache.",
+        "A fusion of rich matcha and sweet mango, perfect for a twist on the classic.",
       image: matchaMango,
       model: "models/MATCHA MANGO.glb",
     },
@@ -194,16 +195,16 @@ export const menu = {
       sizes: ["Regular", "Large", "1 Liter"],
       price: { Regular: "85.00", Large: "100", "1 Liter": "110" },
       description:
-        "Decadent chocolate cake topped with rich chocolate ganache.",
+        "A creamy milk tea with the indulgent, chocolate-hazelnut taste of Nutella.",
       image: nutellaMilktea,
-      model: "models/NUTELLA.glb",
+      model: "models/nutella milktea.glb",
     },
     {
       name: "Oreo Milk Tea",
       sizes: ["Regular", "Large", "1 Liter"],
       price: { Regular: "85.00", Large: "100", "1 Liter": "110" },
       description:
-        "Decadent chocolate cake topped with rich chocolate ganache.",
+        "Milk tea mixed with Oreo crumbs for a delightful, cookies-and-cream flavor.",
       image: oreoMilktea,
       model: "models/OREO.glb",
     },
@@ -212,7 +213,7 @@ export const menu = {
       sizes: ["Regular", "Large", "1 Liter"],
       price: { Regular: "85.00", Large: "100", "1 Liter": "110" },
       description:
-        "Decadent chocolate cake topped with rich chocolate ganache.",
+        "A bright, tropical tea with the tangy sweetness of passion fruit.",
       image: passionFruitea,
       model: "models/PASSION.glb",
     },
@@ -221,7 +222,7 @@ export const menu = {
       sizes: ["Regular", "Large", "1 Liter"],
       price: { Regular: "85.00", Large: "100", "1 Liter": "110" },
       description:
-        "Decadent chocolate cake topped with rich chocolate ganache.",
+        "A fruity blend of sweet strawberry and floral lychee, perfect for a refreshing sip.",
       image: strawberryLycheeFruitea,
       model: "models/lychee.glb",
     },
@@ -230,7 +231,7 @@ export const menu = {
       sizes: ["Regular", "Large", "1 Liter"],
       price: { Regular: "85.00", Large: "100", "1 Liter": "110" },
       description:
-        "Decadent chocolate cake topped with rich chocolate ganache.",
+        "Our signature milk tea blend, crafted with a perfect balance of tea and creamy sweetness.",
       image: tmcMilktea,
       model: "models/tmc milktea.glb",
     },
@@ -238,51 +239,51 @@ export const menu = {
   "pasta & sandwiches": [
     {
       name: "Carbonara",
-      price: "120.00",
+      price: "129.00",
       description:
-        "Delicious mango-flavored cake topped with fresh mango slices.",
+        "A creamy pasta tossed with rich sauce and savory toppings for a comforting classic.",
       image: carbonara,
       model: "models/pasta.glb",
     },
     {
       name: "Fish & Chips",
-      price: "120.00",
+      price: "299.00",
       description:
-        "Rich and moist chocolate cake with a creamy chocolate frosting.",
+        "Crispy, golden-battered fish served with a side of perfectly seasoned fries.",
       image: fishNChips,
       model: "models/FISH AND CHIP.glb",
     },
     {
       name: "Knights of the Table",
-      price: "120.00",
+      price: "349.00",
       description:
-        "Rich and moist chocolate cake with a creamy chocolate frosting.",
+        "A hearty sandwich stacked with premium meats, cheese, and fresh greens.",
       image: knigthsOfTheTable,
       model: "models/KNIGHTS OF THE TABLE.glb",
     },
     {
       name: "Lasagna",
-      price: "120.00",
+      price: "199.00",
       description:
-        "Rich and moist chocolate cake with a creamy chocolate frosting.",
+        "Layers of pasta, rich meat sauce, and melted cheese baked to perfection.",
       image: lasagna,
       model: "models/LASAGNA.glb",
     },
     {
       name: "Nuggets and Fries",
-      price: "120.00",
+      price: "159.00",
       description:
-        "Rich and moist chocolate cake with a creamy chocolate frosting.",
+        "Golden, crispy chicken nuggets paired with a side of crunchy fries.",
       image: NuggetsNFries,
       model: "models/NUGGETS AND FRIES.glb",
     },
     {
       name: "Tuna Pesto",
-      price: "120.00",
+      price: "229.00",
       description:
-        "Rich and moist chocolate cake with a creamy chocolate frosting.",
+        "Pasta mixed with a fresh, basil pesto and tender tuna for a light, flavorful dish.",
       image: TunaPesto,
-      model: "models/TUNA.glb",
+      model: "models/pesto.glb",
     },
   ],
 };
